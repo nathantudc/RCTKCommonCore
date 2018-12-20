@@ -8,8 +8,10 @@ export default class KCore {
 
     return KCommonCore.fingerprintRecognition(tag)
   }
-  static sayHello () {
-
+  static fingerprint (tag,cb) {
+    KCommonCore.fingerprint(tag,result => {
+      cb(result)
+    })
   }
 
 }
