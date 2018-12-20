@@ -23,7 +23,7 @@
 @end
 @implementation RCTKCommonCore
 RCT_EXPORT_MODULE();
-RCT_EXPORT_METHOD(fingerprintRecognitionWithDes:(NSString*)des resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject){
+RCT_EXPORT_METHOD(fingerprintRecognition:(NSString*)des resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject){
     if (!resolve || !reject) {
         return;
     }

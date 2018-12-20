@@ -1,0 +1,22 @@
+{
+  "name": "kioscore-react-native",
+  "version": "0.0.1",
+  "description": "ios系统操作core",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nathantudc/RCTKCommonCore.git"
+  },
+  "keywords": [
+    "RCTKCommonCore"
+  ],
+  "author": "Nathantudc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nathantudc/RCTKCommonCore/issues"
+  },
+  "homepage": "https://github.com/nathantudc/RCTKCommonCore#readme"
+}
