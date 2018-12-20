@@ -45,9 +45,31 @@ RCT_EXPORT_METHOD(fingerprintRecognition:(NSString*)des resolve:(RCTPromiseResol
         }];
         return;
     }
-    if (reject) {
-        reject([NSString stringWithFormat:@"%@",@(error.code)],error.description,error);
+       reject([NSString stringWithFormat:@"%@",@(error.code)],error.description,error);
+}
+
+RCT_EXPORT_METHOD(fingerprint:(NSString*)des callback:(RCTResponseSenderBlock)callback){
+    if (!callback) {
+        return;
     }
+    LAContext *context = [[LAContext alloc] init];
+    NSError *error = nil;
+    NSString *description = des;
+    if(!description) {
+        description = RCTKFingerprintRecognitionDescription;
+    }
+    __weak __typeof__(RCTResponseSenderBlock) weakCallBack = callback;
+    if([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error]){
+        [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:description reply:^(BOOL success, NSError * _Nullable error) {
+            if(success){
+                weakCallBack(@[@{KCommonCode:@(KFRSuccess),KCommonMessage:@"success"}]);
+                return;
+            }
+             weakCallBack(@[@{KCommonCode:[NSString stringWithFormat:@"%@",@(error.code)],KCommonMessage:error.description}]);
+        }];
+        return;
+    }
+    weakCallBack(@[@{KCommonCode:[NSString stringWithFormat:@"%@",@(error.code)],KCommonMessage:error.description}]);
 }
 -(NSString*)dataTOjsonString:(id)object{
     NSError *error;
